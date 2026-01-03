@@ -5,17 +5,26 @@
 }
 
 :root {
-    --bg-primary: #0f0f1a;
-    --bg-secondary: #1a1a2e;
-    --bg-tertiary: #252542;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0b8;
-    --accent-primary: #7c3aed;
-    --accent-secondary: #06b6d4;
-    --success: #10b981;
-    --error: #ef4444;
-    --border: rgba(255, 255, 255, 0.1);
-    --glass: rgba(255, 255, 255, 0.05);
+    /* Nord Polar Night */
+    --bg-primary: #2e3440;
+    --bg-secondary: #3b4252;
+    --bg-tertiary: #434c5e;
+
+    /* Nord Snow Storm */
+    --text-primary: #eceff4;
+    --text-secondary: #d8dee9;
+
+    /* Nord Frost */
+    --accent-primary: #5e81ac;
+    --accent-secondary: #81a1c1;
+
+    /* Nord Aurora */
+    --success: #a3be8c;
+    --error: #bf616a;
+    --warning: #ebcb8b;
+
+    --border: rgba(216, 222, 233, 0.1);
+    --glass: rgba(59, 66, 82, 0.5);
 }
 
 body {
@@ -26,31 +35,30 @@ body {
     line-height: 1.6;
 }
 
-/* Animated background */
+/* Clean background - no gradients */
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(ellipse at 20% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -1;
+    display: none;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 1.5rem;
 }
 
 /* Header */
 .header {
     text-align: center;
-    margin-bottom: 3rem;
+    padding: 1.5rem 2rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
@@ -58,45 +66,31 @@ body::before {
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .logo h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-primary);
 }
 
 .subtitle {
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 /* Upload Zone */
 .upload-zone {
     background: var(--glass);
-    backdrop-filter: blur(20px);
     border: 2px dashed var(--border);
-    border-radius: 20px;
-    padding: 3rem;
+    border-radius: 16px;
+    padding: 2rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    margin-bottom: 2rem;
-}
-
-.upload-zone::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
 .upload-zone:hover,
@@ -169,7 +163,7 @@ body::before {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    background: var(--accent-primary);
     border-radius: 10px;
     width: 0%;
     transition: width 0.3s ease;
@@ -180,12 +174,17 @@ body::before {
     font-size: 0.9rem;
 }
 
+/* Main Content */
+.main-content {
+    display: contents;
+}
+
 /* Files Section */
 .files-section {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
+    grid-column: 1 / -1;
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 1.5rem;
 }
 
@@ -274,7 +273,7 @@ body::before {
 .file-icon {
     width: 44px;
     height: 44px;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    background: var(--accent-primary);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -398,12 +397,11 @@ body::before {
 
 /* ========== Users Section ========== */
 .users-section {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 1.5rem;
-    margin-bottom: 2rem;
+    height: fit-content;
 }
 
 .users-header {
@@ -495,7 +493,7 @@ body::before {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    background: var(--accent-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -595,7 +593,7 @@ body::before {
 .modal-content h2 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    background: var(--accent-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -626,7 +624,7 @@ body::before {
 .modal-btn {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    background: var(--accent-primary);
     border: none;
     border-radius: 12px;
     color: white;
@@ -868,7 +866,7 @@ body::before {
     gap: 0.75rem;
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    background: var(--accent-primary);
     border: none;
     border-radius: 12px;
     color: white;
@@ -881,6 +879,21 @@ body::before {
 .back-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .files-section {
+        grid-column: 1;
+    }
+
+    .users-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 640px) {

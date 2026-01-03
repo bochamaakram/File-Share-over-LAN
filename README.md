@@ -14,29 +14,29 @@ A simple, real-time file sharing application for local networks. Share files bet
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         Client (Browser)                         │
+│                         Client (Browser)                        │
 ├─────────────────────────────────────────────────────────────────┤
 │  index.html    │    styles.css    │    app.js                   │
 │  - UI Layout   │    - Dark theme  │    - WebSocket client       │
 │  - User slots  │    - Animations  │    - File upload/download   │
 │  - File list   │    - Responsive  │    - Session timer          │
-└────────────────┴─────────────────┴──────────────────────────────┘
+└────────────────┴──────────────────┴─────────────────────────────┘
                               │
                     HTTP / WebSocket
                               │
 ┌─────────────────────────────────────────────────────────────────┐
-│                       Server (Node.js)                           │
+│                       Server (Node.js)                          │
 ├─────────────────────────────────────────────────────────────────┤
-│  Express.js                    │  WebSocket (ws)                 │
+│  Express.js                    │  WebSocket (ws)                │
 │  - POST /upload                │  - User connections            │
 │  - GET /files                  │  - Real-time updates           │
 │  - GET /download/:file         │  - Session management          │
 │  - DELETE /files/:file         │  - 2-user limit                │
-├────────────────────────────────┴─────────────────────────────────┤
+├────────────────────────────────┴────────────────────────────────┤
 │  Multer (File uploads)         │  File Metadata (Map)           │
 │  - 500MB limit                 │  - Tracks sender per file      │
 │  - Auto-rename duplicates      │  - Cleared on session end      │
-└────────────────────────────────┴─────────────────────────────────┘
+└────────────────────────────────┴────────────────────────────────┘
                               │
                          File System
                               │

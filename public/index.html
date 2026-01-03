@@ -14,23 +14,6 @@
 
 <body>
     <div class="container">
-        <header class="header">
-            <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2">
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#7c3aed" />
-                            <stop offset="100%" stop-color="#06b6d4" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="17 8 12 3 7 8" />
-                    <line x1="12" y1="3" x2="12" y2="15" />
-                </svg>
-                <h1>LAN File Share</h1>
-            </div>
-            <p class="subtitle">Share files across your local network</p>
-        </header>
 
         <!-- Connected Users Section -->
         <section class="users-section" id="usersSection">
@@ -83,53 +66,57 @@
             </button>
         </section>
 
-        <!-- Username Modal -->
-        <div class="modal" id="usernameModal">
-            <div class="modal-content">
-                <h2>Welcome!</h2>
-                <p>Enter your name to connect</p>
-                <input type="text" id="usernameInput" placeholder="Your name..." maxlength="20" autofocus>
-                <button class="modal-btn" id="joinBtn">Join Session</button>
-            </div>
-        </div>
-
-        <div class="upload-zone" id="uploadZone">
-            <div class="upload-content">
-                <div class="upload-icon">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="17 8 12 3 7 8" />
-                        <line x1="12" y1="3" x2="12" y2="15" />
-                    </svg>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-content">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="17 8 12 3 7 8" />
+                            <line x1="12" y1="3" x2="12" y2="15" />
+                        </svg>
+                    </div>
+                    <p class="upload-text">Drag & drop files here</p>
+                    <p class="upload-subtext">or click to browse</p>
+                    <input type="file" id="fileInput" multiple hidden>
                 </div>
-                <p class="upload-text">Drag & drop files here</p>
-                <p class="upload-subtext">or click to browse</p>
-                <input type="file" id="fileInput" multiple hidden>
-            </div>
-            <div class="upload-progress" id="uploadProgress">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
+                <div class="upload-progress" id="uploadProgress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">Uploading...</p>
                 </div>
-                <p class="progress-text" id="progressText">Uploading...</p>
             </div>
-        </div>
 
-        <section class="files-section">
-            <div class="files-header">
-                <h2>Shared Files</h2>
-                <button class="refresh-btn" id="refreshBtn" title="Refresh">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M23 4v6h-6" />
-                        <path d="M1 20v-6h6" />
-                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
-                    </svg>
-                </button>
-            </div>
-            <div class="files-list" id="filesList">
-                <div class="loading">Loading files...</div>
-            </div>
-        </section>
+            <section class="files-section">
+                <div class="files-header">
+                    <h2>Shared Files</h2>
+                    <button class="refresh-btn" id="refreshBtn" title="Refresh">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M23 4v6h-6" />
+                            <path d="M1 20v-6h6" />
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="files-list" id="filesList">
+                    <div class="loading">Loading files...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Username Modal -->
+    <div class="modal" id="usernameModal">
+        <div class="modal-content">
+            <h2>Welcome!</h2>
+            <p>Enter your name to connect</p>
+            <input type="text" id="usernameInput" placeholder="Your name..." maxlength="20" autofocus>
+            <button class="modal-btn" id="joinBtn">Join Session</button>
+        </div>
     </div>
 
     <div class="toast" id="toast"></div>
