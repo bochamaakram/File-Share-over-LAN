@@ -1,115 +1,36 @@
-# LAN File Share
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A simple, real-time file sharing application for local networks. Share files between devices on the same network with a modern, dark-themed interface.
+## Getting Started
 
-## Features
-
-- 🚀 **Real-time file sharing** - Upload and download files instantly
-- 👥 **2-user sessions** - Connect with one other person for secure transfers
-- ⏱️ **5-minute sessions** - Auto-expires for security, files are deleted
-- 📱 **LAN access** - Any device on your network can connect
-- 🎨 **Modern UI** - Dark theme with glassmorphism effects
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         Client (Browser)                        │
-├─────────────────────────────────────────────────────────────────┤
-│  index.html    │    styles.css    │    app.js                   │
-│  - UI Layout   │    - Dark theme  │    - WebSocket client       │
-│  - User slots  │    - Animations  │    - File upload/download   │
-│  - File list   │    - Responsive  │    - Session timer          │
-└────────────────┴──────────────────┴─────────────────────────────┘
-                              │
-                    HTTP / WebSocket
-                              │
-┌─────────────────────────────────────────────────────────────────┐
-│                       Server (Node.js)                          │
-├─────────────────────────────────────────────────────────────────┤
-│  Express.js                    │  WebSocket (ws)                │
-│  - POST /upload                │  - User connections            │
-│  - GET /files                  │  - Real-time updates           │
-│  - GET /download/:file         │  - Session management          │
-│  - DELETE /files/:file         │  - 2-user limit                │
-├────────────────────────────────┴────────────────────────────────┤
-│  Multer (File uploads)         │  File Metadata (Map)           │
-│  - 500MB limit                 │  - Tracks sender per file      │
-│  - Auto-rename duplicates      │  - Cleared on session end      │
-└────────────────────────────────┴────────────────────────────────┘
-                              │
-                         File System
-                              │
-                    ┌─────────────────┐
-                    │    /uploads     │
-                    │  (temp storage) │
-                    └─────────────────┘
-```
-
-## Project Structure
-
-```
-basic file share/
-├── server.js          # Express + WebSocket server
-├── package.json       # Dependencies
-├── uploads/           # Temporary file storage
-└── public/
-    ├── index.html     # Main app page
-    ├── scan.html      # Network scanner page
-    ├── styles.css     # All styling
-    └── app.js         # Frontend logic
-```
-
-## Installation
+First, run the development server:
 
 ```bash
-npm install
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Usage
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-npm start
-```
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-Then open:
-- **Local**: http://localhost:3000
-- **Network**: http://YOUR_IP:3000 (shown in terminal)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Session Flow
+## Learn More
 
-1. First user connects → Session starts (5 min timer begins)
-2. Second user can join → Session is now full
-3. Both users can upload/download files
-4. When session expires OR both users quit:
-   - All connections closed
-   - All files deleted
-   - Ready for new session
+To learn more about Next.js, take a look at the following resources:
 
-## API Endpoints
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /upload | Upload a file (multipart/form-data) |
-| GET | /files | List all files with metadata |
-| GET | /download/:filename | Download a file |
-| DELETE | /files/:filename | Delete a file |
-| GET | /users | Get connected users |
-| GET | /server-info | Server status for scanning |
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## WebSocket Events
+## Deploy on Vercel
 
-| Event | Direction | Description |
-|-------|-----------|-------------|
-| join | Client→Server | Join session with name |
-| joined | Server→Client | Confirmation with user list |
-| users_update | Server→Client | User list changed |
-| session_expired | Server→Client | Session ended |
-| file_added | Server→Client | New file uploaded |
-| file_deleted | Server→Client | File was deleted |
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## Tech Stack
-
-- **Backend**: Node.js, Express, Multer, ws (WebSocket)
-- **Frontend**: Vanilla HTML, CSS, JavaScript
-- **Styling**: CSS variables, glassmorphism, gradients
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

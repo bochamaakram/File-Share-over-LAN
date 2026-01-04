@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Uploaded files (temporary storage)
+uploads/*
+!uploads/.gitkeep
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
